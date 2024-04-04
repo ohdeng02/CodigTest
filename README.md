@@ -42,6 +42,7 @@
 | 문제번호 | 링크 |
 | ----- | ----- |
 |2174. 로봇 시뮬레이션|[링크](./%EB%B0%B1%EC%A4%80/Gold/2174.%E2%80%85%EB%A1%9C%EB%B4%87%E2%80%85%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98/%EB%A1%9C%EB%B4%87%E2%80%85%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98.py)|
+|9663. N－Queen|[링크](./%EB%B0%B1%EC%A4%80/Gold/9663.%E2%80%85N%EF%BC%8DQueen/README.md)|
 ### 🌱 Lv. Platinum
 | 문제번호 | 링크 |
 | ----- | ----- |

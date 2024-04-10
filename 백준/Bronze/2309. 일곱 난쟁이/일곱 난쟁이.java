@@ -13,10 +13,10 @@ class Main {
             sum += arr[i];
         }
         
-        //int goal = sum - 100;
+        int goal = sum - 100;
         for(int i = 0; i < 8; i++){
             for(int j = i+1; j < 9; j++){
-                if(sum - arr[i] - arr[j] == 100) {
+                if(arr[i] + arr[j] == goal) {
                     arr[i] = 0; 
                     arr[j] = 0;
                     Arrays.sort(arr);
@@ -24,10 +24,10 @@ class Main {
                         //sb.append(arr[k] + "\n");
                         System.out.println(arr[k]);
                     }
+                    
                     return;
                 }
             }
         }
-        //System.out.println(sb);
     }
 }

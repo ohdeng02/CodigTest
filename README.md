@@ -43,6 +43,7 @@
 ### 🌱 Lv. Gold
 | 문제번호 | 링크 |
 | ----- | ----- |
+|1916. 최소비용 구하기|[링크](./%EB%B0%B1%EC%A4%80/Gold/1916.%E2%80%85%EC%B5%9C%EC%86%8C%EB%B9%84%EC%9A%A9%E2%80%85%EA%B5%AC%ED%95%98%EA%B8%B0/%EC%B5%9C%EC%86%8C%EB%B9%84%EC%9A%A9%E2%80%85%EA%B5%AC%ED%95%98%EA%B8%B0.java)|
 |2174. 로봇 시뮬레이션|[링크](./%EB%B0%B1%EC%A4%80/Gold/2174.%E2%80%85%EB%A1%9C%EB%B4%87%E2%80%85%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98/README.md)|
 |9663. N－Queen|[링크](./%EB%B0%B1%EC%A4%80/Gold/9663.%E2%80%85N%EF%BC%8DQueen/N%EF%BC%8DQueen.java)|
 ### 🌱 Lv. Platinum

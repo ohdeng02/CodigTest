@@ -14,13 +14,16 @@ class Solution {
             if(p3[i%10] == answers[i]) score[2]++; 
         }
         int maxScore = 0;
-        for(int s : score){
-            maxScore = Math.max(maxScore, s);
-        }
+        maxScore = Math.max(score[0], Math.max(score[1], score[2]));
         for(int i = 0; i < 3; i++) {
             if(maxScore == score[i]) answer.add(i+1);
         }
 
-        return answer.stream().mapToInt(Integer::intValue).toArray();
+        int[] result = new int[answer.size()];
+        for(int i = 0; i < answer.size(); i++){
+            result[i] = answer.get(i);
+        }
+        //return answer.stream().mapToInt(Integer::intValue).toArray();
+        return result;
     }
 }

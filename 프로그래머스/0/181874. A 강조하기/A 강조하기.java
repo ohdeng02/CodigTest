@@ -7,5 +7,6 @@ class Solution {
             }
         }
         return String.valueOf(charArr);
+        
     }
 }

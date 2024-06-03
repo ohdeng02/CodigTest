@@ -9,11 +9,7 @@ class Solution {
             answer[i] = my_string.substring(i);
         }
         
-        Arrays.sort(answer, new Comparator<String>() {
-            public int compare(String s1, String s2) {
-                return s1.compareTo(s2);
-            }
-        });
+        Arrays.sort(answer);
         return answer;
     }
 }

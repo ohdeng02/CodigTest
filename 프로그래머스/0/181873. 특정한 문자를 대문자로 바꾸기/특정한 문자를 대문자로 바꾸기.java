@@ -1,12 +1,16 @@
 class Solution {
     public String solution(String my_string, String alp) {
-        char[] charArray = my_string.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        String[] arr = my_string.split("");
         
-        for(int i = 0; i < charArray.length; i++) {
-            if(charArray[i] == alp.charAt(0)) {
-                charArray[i] = alp.toUpperCase().charAt(0);
+        for(String s : arr) {
+            if(s.equals(alp)) {
+                sb.append(s.toUpperCase());
+            } else {
+                sb.append(s);
             }
         }
-        return String.valueOf(charArray);
+        
+        return sb.toString();
     }
 }

@@ -3,16 +3,17 @@ import java.io.*;
 
 class Solution {
     public String[] solution(String myString) {
-        String[] answer = myString.split("x");
-        List<String> list = new ArrayList<>();
+//         String[] answer = myString.split("x");
+//         List<String> list = new ArrayList<>();
         
-        for(int i = 0; i < answer.length; i++) {
-            if(!answer[i].equals("")) {
-                list.add(answer[i]);
-            }
-        }
+//         for(int i = 0; i < answer.length; i++) {
+//             if(!answer[i].equals("")) {
+//                 list.add(answer[i]);
+//             }
+//         }
         
-        Collections.sort(list);
-        return list.toArray(String[]::new);
+//         Collections.sort(list);
+//         return list.toArray(String[]::new);
+         return Arrays.stream(myString.split("x")).filter(s -> !s.isEmpty()).sorted().toArray(String[]::new);
     }
 }

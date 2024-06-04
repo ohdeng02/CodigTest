@@ -3,9 +3,9 @@ class Solution {
         int sum = 0;
         int answer = 0;
         
-        String[] arr = number.split("");
-        for(String c : arr) {
-            sum += Integer.parseInt(c);
+        char[] arr = number.toCharArray();
+        for(char c : arr) {
+            sum += c - '0';
         }
         
         answer = sum % 9;

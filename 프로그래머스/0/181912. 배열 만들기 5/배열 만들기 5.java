@@ -5,13 +5,7 @@ class Solution {
         List<Integer> result = new ArrayList<>();
         
         for (String str : intStrs) {
-            //int num = Integer.parseInt(str.substring(s, s + l));
-            StringBuilder sb = new StringBuilder();
-            for (int i = s; i < s + l; i++) {
-                sb.append(str.charAt(i));
-            }
-            int num = Integer.parseInt(sb.toString());
-            
+            int num = Integer.parseInt(str.substring(s, s + l));            
             if (num > k) {
                 result.add(num);
             }

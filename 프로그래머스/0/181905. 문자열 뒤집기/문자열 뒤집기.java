@@ -1,20 +1,14 @@
 class Solution {
     public String solution(String my_string, int s, int e) {
-        StringBuilder sb1 = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        StringBuilder answer = new StringBuilder();
         
-        for (int i = s; i <= e; i++) {
-            sb1.append(my_string.charAt(i));
-        }
+        sb.append(my_string.substring(s, e + 1));
+        sb.reverse();
         
-        for (int i = 0; i < s; i++) {
-            sb2.append(my_string.charAt(i));
-        }
-        sb2.append(sb1.reverse().toString());
-        for (int i = e + 1; i < my_string.length(); i++) {
-            sb2.append(my_string.charAt(i));
-        }
+        answer.append(my_string.substring(0, s) + sb + 
+            my_string.substring(e+1, my_string.length()));
         
-        return sb2.toString();
+        return answer.toString();
     }
 }

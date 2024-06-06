@@ -4,9 +4,14 @@ class Solution {
     public int[] solution(String[] intStrs, int k, int s, int l) {
         List<Integer> result = new ArrayList<>();
         
-        //substring이 시간차지를 많이 하는 것 같은데, 이걸 for loop로 하는게 나은가?
         for (String str : intStrs) {
-            int num = Integer.parseInt(str.substring(s, s + l));
+            //int num = Integer.parseInt(str.substring(s, s + l));
+            StringBuilder sb = new StringBuilder();
+            for (int i = s; i < s + l; i++) {
+                sb.append(str.charAt(i));
+            }
+            int num = Integer.parseInt(sb.toString());
+            
             if (num > k) {
                 result.add(num);
             }

@@ -10,7 +10,7 @@ class Solution {
             if (!list.contains(i)) {
                 list.add(i);
             }
-            if (list.size() == k) break;
+            //if (list.size() == k) break;
         }
         
         for (int i = 0; i < k; i++) {

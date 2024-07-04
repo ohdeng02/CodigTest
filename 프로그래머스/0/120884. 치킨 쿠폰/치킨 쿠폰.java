@@ -1,23 +1,13 @@
 class Solution {
     public int solution(int chicken) {
-        int portion = chicken / 10;
-        int remainder = chicken % 10;
-        int answer = portion;
+        int service = chicken / 10;
+        int coupon = service + (chicken % 10);
         
-        while (portion > 0) {
-            remainder += portion % 10;
-            portion /= 10;
-            answer += portion;
+        while (coupon >= 10) {
+            service +=  coupon / 10;
+            coupon = coupon / 10 + coupon % 10;
         }
-                
-        int re = 0;
-        while (remainder > 0) {
-            re += remainder % 10;
-            remainder /= 10;
-            answer += remainder;
-        }
-        answer += re/10;
         
-        return answer;
+        return service;
     }
 }

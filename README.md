@@ -68,6 +68,7 @@
 ### 🌱 Lv. Silver
 | 문제번호 | 링크 |
 | ----- | ----- |
+|10157. 자리배정|[링크](./%EB%B0%B1%EC%A4%80/Silver/10157.%E2%80%85%EC%9E%90%EB%A6%AC%EB%B0%B0%EC%A0%95/%EC%9E%90%EB%A6%AC%EB%B0%B0%EC%A0%95.java)|
 |10158. 개미|[링크](./%EB%B0%B1%EC%A4%80/Silver/10158.%E2%80%85%EA%B0%9C%EB%AF%B8/README.md)|
 |1026. 보물|[링크](./%EB%B0%B1%EC%A4%80/Silver/1026.%E2%80%85%EB%B3%B4%EB%AC%BC/%EB%B3%B4%EB%AC%BC.java)|
 |10773. 제로|[링크](./%EB%B0%B1%EC%A4%80/Silver/10773.%E2%80%85%EC%A0%9C%EB%A1%9C/%EC%A0%9C%EB%A1%9C.java)|

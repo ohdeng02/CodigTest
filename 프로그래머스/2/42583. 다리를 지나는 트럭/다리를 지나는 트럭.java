@@ -2,39 +2,42 @@ import java.util.*;
 
 class Solution {
     public int solution(int bridge_length, int weight, int[] truck_weights) {
-        Queue<Integer> queue = new LinkedList<>();
-		int sum = 0;
-		int time = 0; 
-
-		for(int i = 0; i < truck_weights.length; i++) { // 향상된 for문을 쓰는게 좋을 것 
-			int truck = truck_weights[i];
-
-			while(true) {
-				// 큐에 아무것도 없는 경우 = 어떠한 트럭도 다리위에 없음 
-				if(queue.isEmpty()) { 
-					queue.add(truck);
-					sum += truck;
-					time++; // 다리에 오를 때만 시간 추가 
-					break;
-				} else if(queue.size() == bridge_length) { // 큐에 다리 길이만큼 트럭이 다 찬 경우 
-					sum -= queue.poll();
-				} else  { // 다리 길이만큼 큐가 차지않았음
-					// weight 값을 넘지 않는 선에서 새로운 트럭을 다리에 올려줌 
-					if(sum + truck <= weight) {
-						queue.add(truck);
-						sum += truck;
-						time++;
-						break;
-					} else { 
-						// 넘는다면 0을 넣어 이미 큐에 있는 트럭이 다리를 건너게 만듬 
-						queue.add(0);
-						time++;
-					}
-				}
-			}
-		}
-
-        // 마지막 트럭에서 반복문이 끝나는데, 마지막 역시 다리 길이만큼 지나가야하기에 + 다리 길이 
-		return time + bridge_length; 
+        int answer = 0;
+        
+        // 큐 생성
+        Queue<Integer> bridge = new LinkedList<>();
+        for (int i = 0; i < bridge_length; i++){
+            bridge.offer(0);
+        }
+        
+        // 다리 길이가 1이거나 트럭 개수가 1일 경우, return
+        if (bridge_length == 1) {
+            return truck_weights.length+1;
+        }
+        if (truck_weights.length == 1) {
+            return bridge_length+1;
+        }
+        
+        int index = 0;
+        int currentWeight = 0;
+        
+        // 트럭의 개수만큼 반복
+        while (index < truck_weights.length) {
+            // 현재 다리에 존재하는 맨 앞 트럭의 무게를 빼기
+            currentWeight -= bridge.poll();
+            answer++;  // 새로운 트럭 넣기
+            
+            // 현재 다리의 트럭 무게 + 들어올 트럭 무게 와 weight 비교
+            if (weight >= currentWeight + truck_weights[index]) {
+                bridge.offer(truck_weights[index]);
+                currentWeight += truck_weights[index++];
+            } else {
+                // 이외의 경우 0을 삽입
+                bridge.offer(0);
+            }
+        }
+        
+        // 지금까지 건너온 answer 값에 마지막 트럭 건너는 것까지 + bridge_length
+        return answer + bridge_length;
     }
 }

@@ -3,37 +3,30 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
 
-        List<Integer> list = new ArrayList<>();
-        int[] works = new int[progresses.length];
-        
-      
-        for(int i = 0; i < speeds.length; i++){
-            works[i]  = (100 - progresses[i]) / speeds[i];
-            if ((100 - progresses[i]) % speeds[i] != 0){
-                works[i]  += 1;
+        int[] days = new int[progresses.length];
+        for (int i = 0; i < days.length; i++) {
+            days[i] = (int)Math.ceil((100 - progresses[i]) / (float)speeds[i]); 
+        }
+
+        List<Integer> answer = new ArrayList<>();
+        List<Integer> deploy = new ArrayList<>();
+        answer.add(1);
+        deploy.add(days[0]);
+        int idx = 0;
+        for (int i = 1; i < days.length; i++) {
+            if (days[i] <= deploy.get(idx)) {
+                answer.set(idx, answer.get(idx) + 1);
+            } else {
+                answer.add(1);
+                deploy.add(days[i]);
+                idx++;
             }
         }
         
-        int x = works[0];
-        int count=1;
-        for(int i=1;i<progresses.length;i++){
-
-            if(x>=works[i]){
-                count+=1;
-            }else{
-                list.add(count);
-                count =1;
-                x= works[i];
-            }
+        int[] array = new int[answer.size()];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = answer.get(i);
         }
-        list.add(count);
-        
-        int[] answer = new int[list.size()];
-
-        for (int i = 0; i <list.size(); i++) {
-            answer[i] = list.get(i);
-        }
-
-        return answer;
+        return array;
     }
 }

@@ -1,58 +1,49 @@
-import java.util.Scanner;
-
+import java.util.*;
+import java.io.*;
+  
 public class Main {
-    static int N, M;
-    static int[] arr;
-    static int max = 0;
-    static int result;
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        M = sc.nextInt();
-        arr = new int[N];
-
-        for (int i = 0; i < N; ++i) {
-            arr[i] = sc.nextInt();
-            max = Integer.max(max, arr[i]);
+    static int M;
+    static int[] days;
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        
+        days = new int[N];
+        int max = 0; // k의 최솟값
+        for (int i = 0; i < N; i++) {
+            days[i] = Integer.parseInt(br.readLine());
+            max = Math.max(max, days[i]);
         }
-        // 돈을 가장 많이 쓰는 날 이상의 금액을 인출해야 한다.
-        // 그렇지 않으면 인출을 하더라도 금액이 부족하기 때문에 계속 인출을 반복하게 된다.
+        
         int left = max;
-        int right = 10_000 * 100_000;
-        int count = 0;
-        // 이진 탐색을 이용하여 해답을 찾는다.
+        int right = 10000*100000;
+        int result = 0;
+        //이진탐색
         while (left <= right) {
             int mid = (left + right) / 2;
-            // 지정한 횟수 이하의 횟수만큼 인출해야 할 경우,
-            // 인출 금액이 더 적은 경우에 해답이 있는지 탐색해 봐야 한다.
-            if (M >= getWithdrawalCount(mid)) {
+            if (M >= getCount(mid)) {
                 result = mid;
                 right = mid - 1;
-                // 지정한 횟수보다 더 많이 인출해야 할 경우,
-                // 인출 금액이 더 커야한다.
             } else {
                 left = mid + 1;
             }
         }
         System.out.println(result);
     }
-    /**
-     * @param withdrawalAmount 현금 인출 금액
-     * @return 돈을 계획대로 쓰기 위해 필요한 인출 횟수
-     */
-    static int getWithdrawalCount(int withdrawalAmount) {
-        int count = 1;
-        int money = withdrawalAmount;
 
-        for (int i : arr) {
-            money -= i;
-            // 돈이 모자라면 현금을 다시 인출하여 사용
-            if (money < 0) {
-                ++count;
-                money = withdrawalAmount - i;
+    public static int getCount(int k) { // 현재 k값으로 몇 번 인출한지 카운트
+        int cnt = 1;
+        int current = k - days[0];
+        for (int i = 1; i < days.length; i++) {
+            if (current < days[i]) {
+                cnt++;
+                current = k;
             }
+            current -= days[i];
         }
-        return count;
+        return cnt;
     }
 }

@@ -1,47 +1,39 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
-
+import java.util.*;
+import java.io.*;
+  
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-
-        int n = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
-
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(br.readLine());
+        
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        long[] nums = new long[N];
+        for (int i = 0; i < N; i++) {
+            nums[i] = Long.parseLong(st.nextToken());
         }
 
-        Arrays.sort(arr);
-
-        int cnt = 0;
-        for (int i = 0; i < n; i++) {
+        Arrays.sort(nums);
+        int answer = 0;
+        for (int i = 0; i < N; i++) {
             int start = 0;
-            int end = n - 1;
-
+            int end = N - 1;
             while (start < end) {
-                if (start == i || end == i) { //본인 이라면
+                if (start == i || end == i) {
                     if (start == i) start++;
                     else end--;
                 } else {
-                    int now = arr[start] + arr[end];
-                    if (arr[i] == now) { //찾은 경우 
-                        cnt++;
+                    long now = nums[start] + nums[end];
+                    if (now == nums[i]) {
+                        answer++;
                         break;
-                    } else if (now < arr[i]) { // 더 큰 숫자가 필요한 경우
+                    } else if (now < nums[i]) {
                         start++;
-                    } else { // 더 작은 숫자가 필요한 경우
+                    } else {
                         end--;
                     }
                 }
             }
         }
-
-        System.out.println(cnt);
+        System.out.println(answer);
     }
 }

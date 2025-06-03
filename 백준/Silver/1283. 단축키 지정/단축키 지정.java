@@ -1,63 +1,54 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.io.*;
 
-public class Main {
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		
-		int N = Integer.parseInt(br.readLine());
-		Set<String> set = new HashSet<>();
+class Main {
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(br.readLine());
 
-		for (int i = 0; i < N; i++) {
-			boolean isShortcutKey = false;
-			String str = br.readLine();
-			String words[] = str.split(" ");
+        int[] dp = new int[26];
+        for (int i = 0; i < N; i++) {
+            int chIdx = -1;
+            String s = br.readLine();
+            String[] arr = s.split(" ");
+            //1. 각 단어 첫글자
+            int arrIdx = 0;
+            for (int j = 0; j < arr.length; j++) {
+                int idx = Character.toUpperCase(arr[j].charAt(0)) - 'A';
+                if (dp[idx] == 0) {
+                    dp[idx] = 1;
+                    chIdx = arrIdx;
+                    break;
+                }
+                arrIdx += arr[j].length() + 1;
+            }
 
-			// 1. 단어의 첫 글자가 단축키로 지정되었는지
-			for (int j = 0; j < words.length; j++) {
-				String s = words[j].charAt(0) + "";
-				int index = 0;
-				
-				if (!set.contains(s.toUpperCase()) && !set.contains(s.toLowerCase())) {
-					set.add(s.toUpperCase());
-					set.add(s.toLowerCase());
-					isShortcutKey = true;
-					
-					for (int k = 0; k < j; k++) {
-						index += words[k].length();
-						if (index != 0) index += 1;
-					}
-					
-					sb.append(str.substring(0, index) + "[" + str.charAt(index) + "]" + str.substring(index + 1) + "\n");
-					break;
-				}
-			}
-			
-			if (isShortcutKey) continue;
-			
-			for (int j = 0; j < str.length(); j++) {
-				String s = str.charAt(j) + "";
-				
-				if (!s.equals(" ") && !set.contains(s.toUpperCase()) && !set.contains(s.toLowerCase())) {
-					set.add(s.toUpperCase());
-					set.add(s.toLowerCase());
-					isShortcutKey = true;
-					
-					sb.append(str.substring(0, j) + "[" + str.charAt(j) + "]" + str.substring(j + 1) + "\n");
-					break;
-				}
-			}
-			
-			
-			if (isShortcutKey) continue;
-			
-			sb.append(str + "\n");
-		}
-		
-		System.out.println(sb);
-	}
+            // 2.왼쪽부터 순서대로 가능한것 확인
+            if (chIdx == -1) {
+                for (int j = 1; j < s.length(); j++) {
+                    if (s.charAt(j) == ' ') continue;
+                    int idx = Character.toUpperCase(s.charAt(j)) - 'A';
+                    if (dp[idx] == 0) {
+                        dp[idx] = 1;
+                        chIdx = j;
+                        break;
+                    }
+                }
+            }
+
+            // 문자열 추가
+            for (int j = 0; j < s.length(); j++) {
+                if (j == chIdx) {
+                    sb.append("[").append(s.charAt(j)).append("]");
+                } else {
+                    sb.append(s.charAt(j));
+                }
+            }
+            sb.append("\n");
+        }
+        
+        System.out.println(sb);
+    }
 }
